@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import confetti from "canvas-confetti";
 import { motion, AnimatePresence } from "framer-motion";
-import { Car, Swords, Shield, Tv, Volume2, VolumeX, Heart } from "lucide-react";
+import { Car, Swords, Shield, Trophy, Volume2, VolumeX, Heart } from "lucide-react";
 
 export default function RijuBirthday() {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,18 +92,18 @@ export default function RijuBirthday() {
                 animate={{ scale: 1 }}
                 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-red-600 via-yellow-400 to-blue-500 bg-clip-text text-transparent italic leading-tight"
               >
-                HBD RIJU!
+                Happy 27th BDay RIJU!
               </motion.h1>
               <p className="text-gray-400 tracking-[0.4em] text-xs mt-2 uppercase font-bold">
-                Ankush Hait • Special Edition Card
+                Ankush Hait • Bestie Edition Card
               </p>
             </div>
 
             <div className="space-y-6 text-white text-center mb-10 text-lg">
               <p>
-                Happy Birthday, <span className="text-yellow-400 font-bold underline decoration-yellow-400/50">Riju</span>! 
-                From our freezing <span className="text-blue-400">Gangtok</span> trip to the endless 
-                <span className="text-green-400"> CODM</span> clutches, you've been my only BFF.
+                HAPPY BIRTHDAY TO MY <span className="text-yellow-400 font-bold underline decoration-yellow-400/50">BESTIEEE RIJU</span> !! 🎂 🎉 🎈 🍫 ☃️ 🍻🍾🍧 
+                From our  <span className="text-blue-400">school days to entrance talks, BTech Days, MBA Days, </span> multiple meets/trips to the endless 
+                <span className="text-green-400"> Clash of Clans, Hastala Vista, Call Of Duty Mobile</span> clutches, you've been my only BFF.
               </p>
               
               <motion.div 
@@ -112,8 +112,7 @@ export default function RijuBirthday() {
                 transition={{ delay: 0.5 }}
                 className="p-5 bg-yellow-500/5 rounded-2xl border border-yellow-500/20 italic text-yellow-100 shadow-inner"
               >
-                "Shinzou wo Sasageyo!" ✊ Since we both have major <span className="text-red-400 font-bold">LYADH</span> today, 
-                let's just marathon <strong>Breaking Bad</strong> and skip the meds. 🧪💎
+                "Shinzou wo Sasageyo!" ✊ Enjoy your Day, <span className="text-red-400 font-bold">Have A Blast</span> today & have a  <strong>Great Year Ahead</strong>💎
               </motion.div>
             </div>
 
@@ -157,8 +156,8 @@ export default function RijuBirthday() {
                 <span className="text-[10px] text-white uppercase font-bold">007</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <Tv size={28} className="text-blue-500" />
-                <span className="text-[10px] text-white uppercase font-bold">B.Bad</span>
+                <Trophy size={28} className="text-blue-500" />
+                <span className="text-[10px] text-white uppercase font-bold">Barcelona</span>
               </div>
               <div className="flex flex-col items-center gap-1">
                 <Heart size={28} className="text-red-500 fill-red-500 animate-pulse" />
