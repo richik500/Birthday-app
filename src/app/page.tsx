@@ -1,65 +1,173 @@
-import Image from "next/image";
+"use client";
+import { useEffect, useState, useRef } from "react";
+import confetti from "canvas-confetti";
+import { motion, AnimatePresence } from "framer-motion";
+import { Car, Swords, Shield, Tv, Volume2, VolumeX, Heart } from "lucide-react";
 
-export default function Home() {
+export default function RijuBirthday() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Toggle music and prevent default browser download behavior
+  const toggleMusic = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((err) => console.log("Playback blocked:", err));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const triggerConfetti = () => {
+    const end = Date.now() + 5 * 1000;
+    (function frame() {
+      confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ["#EAB308", "#EF4444"] });
+      confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ["#3B82F6", "#ffffff"] });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      triggerConfetti();
+      if (audioRef.current) {
+        audioRef.current.volume = 0.5;
+        audioRef.current.play()
+          .then(() => setIsPlaying(true))
+          .catch(() => console.log("Autoplay blocked. User toggle required."));
+      }
+    }
+  }, [isOpen]);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden px-4 font-sans">
+      {/* Audio Setup */}
+      <audio 
+        ref={audioRef} 
+        src="/audio/bday-song.mp3" 
+        preload="auto" 
+        loop 
+        controlsList="nodownload" 
+      />
+
+      {/* Background: Faded Aston Martin */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-20 scale-105 transition-all duration-1000"
+        style={{ backgroundImage: "url('/images/bg-car.jpg')" }}
+      />
+
+      <AnimatePresence>
+        {!isOpen ? (
+          <motion.div exit={{ opacity: 0, scale: 0.9 }} className="z-20 text-center">
+            <motion.button 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsOpen(true)}
+              className="px-12 py-6 bg-yellow-500 text-black font-black rounded-full shadow-[0_0_50px_rgba(234,179,8,0.4)] animate-bounce text-2xl uppercase tracking-tighter"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              FOR MY BFF RIJU 🏎️
+            </motion.button>
+          </motion.div>
+        ) : (
+          <motion.div 
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative z-10 w-full max-w-3xl p-6 md:p-10 bg-black/60 backdrop-blur-2xl border border-white/10 rounded-[3rem] shadow-2xl overflow-y-auto max-h-[90vh] custom-scrollbar"
+          >
+            {/* Music Controller */}
+            <button 
+              onClick={toggleMusic}
+              className="absolute top-8 right-8 p-3 bg-yellow-500/10 rounded-full border border-yellow-500/40 text-yellow-500 hover:bg-yellow-500/20 transition-all z-50"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              {isPlaying ? <Volume2 size={24} className="animate-pulse" /> : <VolumeX size={24} />}
+            </button>
+
+            <div className="text-center mb-10">
+              <motion.h1 
+                initial={{ scale: 0.5 }} 
+                animate={{ scale: 1 }}
+                className="text-5xl md:text-7xl font-black bg-gradient-to-r from-red-600 via-yellow-400 to-blue-500 bg-clip-text text-transparent italic leading-tight"
+              >
+                HBD RIJU!
+              </motion.h1>
+              <p className="text-gray-400 tracking-[0.4em] text-xs mt-2 uppercase font-bold">
+                Ankush Hait • Special Edition Card
+              </p>
+            </div>
+
+            <div className="space-y-6 text-white text-center mb-10 text-lg">
+              <p>
+                Happy Birthday, <span className="text-yellow-400 font-bold underline decoration-yellow-400/50">Riju</span>! 
+                From our freezing <span className="text-blue-400">Gangtok</span> trip to the endless 
+                <span className="text-green-400"> CODM</span> clutches, you've been my only BFF.
+              </p>
+              
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                transition={{ delay: 0.5 }}
+                className="p-5 bg-yellow-500/5 rounded-2xl border border-yellow-500/20 italic text-yellow-100 shadow-inner"
+              >
+                "Shinzou wo Sasageyo!" ✊ Since we both have major <span className="text-red-400 font-bold">LYADH</span> today, 
+                let's just marathon <strong>Breaking Bad</strong> and skip the meds. 🧪💎
+              </motion.div>
+            </div>
+
+            {/* Birthday Video */}
+            <div className="mb-10 rounded-3xl overflow-hidden border-4 border-yellow-500/20 shadow-2xl bg-black">
+              <video controls className="w-full aspect-video">
+                <source src="/videos/bday-video.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            {/* Expanded Memory Grid (12 Images) */}
+            <h2 className="text-white font-bold text-center mb-4 uppercase tracking-widest text-sm opacity-50">Our Memories</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <motion.div 
+                  key={i} 
+                  whileHover={{ scale: 1.05, zIndex: 1 }}
+                  className="aspect-square bg-gray-900 rounded-xl overflow-hidden border border-white/10 shadow-lg"
+                >
+                  <img 
+                    src={`/images/pic${i + 1}.jpg`} 
+                    alt={`Memory ${i + 1}`} 
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Interest Badges */}
+            <div className="flex justify-around items-center pt-8 border-t border-white/10 text-yellow-500">
+              <div className="flex flex-col items-center gap-1">
+                <Car size={28}/>
+                <span className="text-[10px] text-white uppercase font-bold">DBS</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <Swords size={28}/>
+                <span className="text-[10px] text-white uppercase font-bold">Levi</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <Shield size={28}/>
+                <span className="text-[10px] text-white uppercase font-bold">007</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <Tv size={28} className="text-blue-500" />
+                <span className="text-[10px] text-white uppercase font-bold">B.Bad</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <Heart size={28} className="text-red-500 fill-red-500 animate-pulse" />
+                <span className="text-[10px] text-white uppercase font-bold">BFF</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </main>
   );
 }
