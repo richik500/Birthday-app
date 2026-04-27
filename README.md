@@ -1,10 +1,26 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+This is a personalized Next.js web application featuring dynamic content, interactive elements, and a modern UI powered by Tailwind CSS.
+
+## 🚀 Features
+- **Responsive Design:** Optimized for both mobile and desktop viewing.
+- **Interactive UI:** Built using Next.js App Router for fast performance.
+- **Personalized Content:** Dedicated sections for memories and birthday wishes.
+- **Seamless Deployment:** Integrated with Vercel for automatic updates via GitHub.
+
+## 🛠️ Tech Stack
+- **Framework:** [Next.js 14+](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Hosting:** [Vercel](https://vercel.com/)
+
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+npm install
+
 npm run dev
 # or
 yarn dev
@@ -33,4 +49,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+Add Project -> Import Git Repository -> Give Project Name & make other changes as required -> Deploy
+
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📤 How to Update
+To push new changes to the live site:
+
+Stage changes: git add .
+
+Commit changes: git commit -m "Your update message"
+
+Push to GitHub: git push origin main
