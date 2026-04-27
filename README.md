@@ -49,15 +49,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Add Project -> Import Git Repository -> Give Project Name & make other changes as required -> Deploy
+``` Add Project -> Import Git Repository -> Give Project Name & make other changes as required -> Deploy```
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## 📤 How to Update
 To push new changes to the live site:
-
+```bash
 Stage changes: git add .
 
 Commit changes: git commit -m "Your update message"
 
 Push to GitHub: git push origin main
+```
