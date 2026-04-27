@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-This is a personalized Next.js web application featuring dynamic content, interactive elements, and a modern UI powered by Tailwind CSS.
+This is a personalized Next.js web application for Ayush's birthday featuring dynamic content, interactive elements, and a modern UI powered by Tailwind CSS.
 
 ## 🚀 Features
 - **Responsive Design:** Optimized for both mobile and desktop viewing.
